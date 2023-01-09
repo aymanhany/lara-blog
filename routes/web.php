@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::get('/posts/mine', [PostController::class, 'indexByUser'])->name('posts.m
 Route::get('/posts/{id}', [PostController::class, 'show'])->name('post');
 Route::get('/posts/create/post', [PostController::class, 'create'])->name('post.create');
 Route::post('/posts/create/post', [PostController::class, 'store'])->name('post.store');
+Route::post('/posts/{id}', [CommentController::class, 'store'])->name('comments.store');
 
 
 require __DIR__.'/auth.php';
