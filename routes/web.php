@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\CommentController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +41,8 @@ Route::get('/posts/create/post', [PostController::class, 'create'])->name('post.
 Route::post('/posts/create/post', [PostController::class, 'store'])->name('post.store');
 Route::post('/posts/{id}', [CommentController::class, 'store'])->name('comments.store');
 
+Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google.login');
+Route::get('auth/callback-url', [GoogleController::class, 'GoogleCallback'])->name('google.callbak');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
